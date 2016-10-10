@@ -1,10 +1,446 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="JavaWeb,PHP,Android/iOS开发,也玩Arduino, 喜欢折腾好玩的东西,喜欢深入研究原理"><title>Welee's blog | 欣赏生活,爱我所爱</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Welee's blog</h1><a id="logo" href="/.">Welee's blog</a><p class="description">欣赏生活,爱我所爱</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h2 class="post-title"><a href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/">nginx+tomcat反向代理影响某些request相关方法的值</a></h2><div class="post-meta">2016-08-18</div><a data-thread-key="2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/" href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/#comments" class="ds-thread-count"></a><div class="post-content"><p>Nginx+Tomcat+SSL<br>实际上，大规模的网站都有很多台Web服务器和应用服务器组成，用户的请求可能是经由 Varnish、HAProxy、Nginx之后才到应用服务器，中间有好几层。而中小规模的典型部署常见的是 Nginx+Tomcat 这种两层配置，而Tomcat 会多于一台，Nginx 作为静态文件处理和负载均衡。</p></div><p class="readmore"><a href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/">阅读更多</a></p></div><div class="post"><h2 class="post-title"><a href="/2016/08/17/Java动态生成字节码并加载/">Java动态生成字节码并加载</a></h2><div class="post-meta">2016-08-17</div><a data-thread-key="2016/08/17/Java动态生成字节码并加载/" href="/2016/08/17/Java动态生成字节码并加载/#comments" class="ds-thread-count"></a><div class="post-content"><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>有的时候，可能我们需要在程序运行期间，动态创建字节码并运行。最常见的使用场景就是Spring框架中的动态代理AOP，其本质是Spring框架在运行期间动态创建了一个被代理对象的子类，通过继承来实现代理机制（正因为是通过继承实现的代理，因此Spring aop不能代理终态类，不能代理类中的终态方法）。在Spring中，使用了一个第三方的字节码生成项目。实际项目中，如果我们有类似需求，当然也可以用这种方法，但是姑且不说这样做的繁琐程度，光是查看这些项目的API文档就足以头疼一阵了，对于某些项目中只有一个很小点需要类似功能来说，这样做的成本略微有点高。（类似这样现成的项目有javassist、cglib）</p></div><p class="readmore"><a href="/2016/08/17/Java动态生成字节码并加载/">阅读更多</a></p></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://www.liduanwei.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/">nginx+tomcat反向代理影响某些request相关方法的值</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/17/Java动态生成字节码并加载/">Java动态生成字节码并加载</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.liduanwei.com/" title="Welee's Blog" target="_blank">Welee's Blog</a><ul></ul><a href="http://www.dreamspacex.com/" title="dreamspacex.com" target="_blank">dreamspacex.com</a><ul></ul><a href="http://www.example3.com/" title="xxx" target="_blank">xxx</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Welee's blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'liduanwei'};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Welee&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JavaWeb,PHP,Android/iOS开发,也玩Arduino, 喜欢折腾好玩的东西,喜欢深入研究原理">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Welee's blog">
+<meta property="og:url" content="http://www.liduanwei.com/index.html">
+<meta property="og:site_name" content="Welee's blog">
+<meta property="og:description" content="JavaWeb,PHP,Android/iOS开发,也玩Arduino, 喜欢折腾好玩的东西,喜欢深入研究原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welee's blog">
+<meta name="twitter:description" content="JavaWeb,PHP,Android/iOS开发,也玩Arduino, 喜欢折腾好玩的东西,喜欢深入研究原理">
+  
+    <link rel="alternative" href="/atom.xml" title="Welee&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Welee</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">欣赏生活,爱我所爱</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Welee</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="null" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Welee</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">欣赏生活,爱我所爱</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        
+  
+    <article id="post-nginx-tomcat反向代理影响某些request相关方法的值" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/">nginx+tomcat反向代理影响某些request相关方法的值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Nginx+Tomcat+SSL<br>实际上，大规模的网站都有很多台Web服务器和应用服务器组成，用户的请求可能是经由 Varnish、HAProxy、Nginx之后才到应用服务器，中间有好几层。而中小规模的典型部署常见的是 Nginx+Tomcat 这种两层配置，而Tomcat 会多于一台，Nginx 作为静态文件处理和负载均衡。</p>
+<p>如果Nginx作为前端代理的话，则Tomcat根本不需要自己处理 https，全是Nginx处理的。用户首先和Nginx建立连接，完成SSL握手，而后Nginx 作为代理以 http 协议将请求转给 tomcat 处理，Nginx再把 tomcat 的输出通过SSL 加密发回给用户，这中间是透明的，Tomcat只是在处理 http 请求而已。因此，这种情况下不需要配置 Tomcat 的SSL，只需要配置 Nginx 的SSL 和 Proxy。</p>
+<p>在代理模式下，Tomcat 如何识别用户的直接请求（URL、IP、https还是http )？<br>在透明代理下，如果不做任何配置Tomcat 认为所有的请求都是 Nginx 发出来的，这样会导致如下的错误结果：</p>
+<pre><code>request.getScheme()  //总是 http，而不是实际的http或https
+request.isSecure()  //总是false（因为总是http）
+request.getRemoteAddr()  //总是 nginx 请求的 IP，而不是用户的IP
+request.getRequestURL()  //总是 nginx 请求的URL 而不是用户实际请求的 URL
+request.getServerName  //总是nginx请求的ip
+request.getServerPort //总是nginx请求的端口
+response.sendRedirect( 相对url )  //总是重定向到 http 上 （因为认为当前是 http 请求）
+</code></pre><p>如果程序中把这些当实际用户请求做处理就有问题了。解决方法很简单，只需要分别配置一下 Nginx 和 Tomcat 就好了，而不用改程序。<br>配置 Nginx 的转发选项：</p>
+<pre><code>proxy_set_header       Host $host;   //解决getRequestURL、getServerName、getServerPort
+//如果nginx是80服务，上面就够,代表默认servlet_port是80；否则需要Host $host:$server_port，不配置servlet_port会导致丢失端口
+
+proxy_set_header  X-Real-IP  $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto  $scheme; //解决getScheme，isSecure，sendRedirect
+</code></pre><p>配置Tomcat server.xml 的 Engine 模块下配置一个 Value：</p>
+<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.RemoteIpValve&quot; remoteIpHeader=&quot;X-Forwarded-For&quot; protocolHeader=&quot;X-Forwarded-Proto&quot; protocolHeaderHttpsValue=&quot;https&quot; /&gt;
+</code></pre><p>配置双方的 X-Forwarded-Proto 就是为了正确地识别实际用户发出的协议是 http 还是 https。X-Forwarded-For 是为了获得实际用户的 IP。<br>这样以上5项测试就都变为正确的结果了，就像用户在直接访问 Tomcat 一样</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/18/nginx-tomcat反向代理影响某些request相关方法的值/" class="archive-article-date">
+  	<time datetime="2016-08-18T10:40:16.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-18</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java动态生成字节码并加载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/17/Java动态生成字节码并加载/">Java动态生成字节码并加载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>有的时候，可能我们需要在程序运行期间，动态创建字节码并运行。最常见的使用场景就是Spring框架中的动态代理AOP，其本质是Spring框架在运行期间动态创建了一个被代理对象的子类，通过继承来实现代理机制（正因为是通过继承实现的代理，因此Spring aop不能代理终态类，不能代理类中的终态方法）。在Spring中，使用了一个第三方的字节码生成项目。实际项目中，如果我们有类似需求，当然也可以用这种方法，但是姑且不说这样做的繁琐程度，光是查看这些项目的API文档就足以头疼一阵了，对于某些项目中只有一个很小点需要类似功能来说，这样做的成本略微有点高。（类似这样现成的项目有javassist、cglib）</p>
+<p>另一种方法是自己从零开始，直接创建字节码，参考Oracle的文档，自己做一个实现。不过这在理论上可行，实际上比第一种方法难度更高。</p>
+<p>最后一种方法，就是本文要介绍的方法，即程序动态的生成Java源文件，由JDK进行编译，最后动态加载到JVM并运行。</p>
+<p>变通<br>由于Java源文件相对较容易生成，是纯文本文件。而Java的编译器是自举的，也就是说Java编译器就是用Java本身编写的，因此从JDK 1.6开始，编译器相关API就一直在SDK中，所以，我们也不需要通过调用命令行的方式来控制javac来编译我们动态生成的Java源文件。</p>
+<p>实例<br>比如存在一个/home/test/src.java的文件需要被编译成.class文件：</p>
+<p>JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();<br>int compilationResult = compiler.run(null, null, null, “/home/test/src.java”);<br>这样就会把/home/test/src.java编译成src.class，但是这样操作要求源文件在磁盘上，而且编译后的字节码也会被写到磁盘上。有的时候，我们的Java源文件可能是在内存中动态生成，亦或者是从网络上获取的，只是为了一次执行，不希望写入磁盘。</p>
+<p>出于这样的目的，在查阅相关类的API文档后，发现是可以实现这样目的的。只要继承ForwardingJavaFileManager类就可以实现从内存中直接加载Java源文件，继承并重写URLClassLoader.findClass()就可以实现将编译结果直接以byte[]形式返回，而不再写入到磁盘文件。（完整代码在文末）</p>
+<pre><code>public static Map&lt;String, byte[]&gt; compile(String javaName, String javaSrc) {
+    JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+    StandardJavaFileManager stdManager = compiler.getStandardFileManager(null, null, null);
+
+    try (MemoryJavaFileManager manager = new MemoryJavaFileManager(stdManager)) {
+        JavaFileObject javaFileObject = manager.makeStringSource(javaName, javaSrc);
+        JavaCompiler.CompilationTask task = compiler.getTask(null, manager, null, null, null, Arrays.asList(javaFileObject));
+        if (task.call())
+            return manager.getClassBytes();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+</code></pre><p>完整代码段<br>上述的代码逻辑，我进行了部分封装，封装后的代码可以在这里看到，封装后的类使用方法可以参考测试用例。</p>
+<p>这里就几个有关的参数说明一下：（具体可以参照封装类的代码）</p>
+<p>MemoryJavaFileManager.getClassBytes()的返回类型为Map<string, byte[]="">,其中Key为类名，Value为对应的字节码。一般来说一个.java文件只对应一个类，但是可能会存在内部类的情况（例如我这个封装的文件），因此一个java源文件是可以生成出多个class文件的。<br>MemoryJavaFileManager.makeStringSource(String, String)方法<br>第一个参数是Java源文件的文件名，因为实际上并不存在磁盘文件，因此这个参数应该是源文件中唯一的那个public修饰符修饰的类名，例如源文件中存在public class ABC{}，那么这个参数就应该是ABC.java，否则编译器会报错，拒绝编译。<br>第二个参数是源文件内容的字符串<br>该封装类，在Oracle JDK 1.8版本下测试通过，其他版本JDK以及OpenJDK未测试。JRE不支持该代码，因为JRE中不存在Java编译器。如果需要在JRE环境下动态创建并加载类，唯一可行的办法使用开源的字节码操作库（文章开头有介绍两个）<br>测试用例中的testCompile()方法可能在不同版本的JDK下编译出来的字节码大小有所不同，造成JUnit断言失败，代码本身经测试就没有问题的。<br>动态创建的类加载到JVM后，与原生的类没有任何区别，因此创建的时候留意包名类名是否存在冲突，动态加载的类，调用只能使用反射机制。具体方法参考测试用例中的testInvoke()方法。<br>总结<br>本文总的来说没有什么技术含量，主要就是使用了一组编译器相关的API而已，如果这组API在使用过程中有什么疑问，请参照官方文档。</string,></p>
+<p>其他，有什么问题，欢迎与我进行交流。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/08/17/Java动态生成字节码并加载/" class="archive-article-date">
+  	<time datetime="2016-08-17T06:20:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-08-17</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Welee
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接1</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接2</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接4</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接5</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">友情链接6</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
