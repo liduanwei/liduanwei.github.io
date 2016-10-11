@@ -6,31 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Javaassit学习总结 | Welee&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：
-
-动态编译
-动态生成二进制字节码（.class）对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：
-动态创建新类或新接口的二进制字节码
-动态扩展现有类或接口的二进制字节码其中，CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一">
+  <meta name="description" content="&amp;#x8981;&amp;#x60F3;&amp;#x5C06;&amp;#x7F16;&amp;#x8BD1;&amp;#x65F6;&amp;#x4E0D;&amp;#x5B58;&amp;#x5728;&amp;#x7684;&amp;#x7C7B;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x52A8;&amp;#x6001;&amp;#x521B;&amp;#x5EFA;&amp;#x5E76;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javaassit学习总结">
 <meta property="og:url" content="http://www.liduanwei.com/2016/10/11/Javaassit学习总结/index.html">
 <meta property="og:site_name" content="Welee's blog">
-<meta property="og:description" content="要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：
-
-动态编译
-动态生成二进制字节码（.class）对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：
-动态创建新类或新接口的二进制字节码
-动态扩展现有类或接口的二进制字节码其中，CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一">
-<meta property="og:updated_time" content="2016-10-11T06:17:21.000Z">
+<meta property="og:description" content="&amp;#x8981;&amp;#x60F3;&amp;#x5C06;&amp;#x7F16;&amp;#x8BD1;&amp;#x65F6;&amp;#x4E0D;&amp;#x5B58;&amp;#x5728;&amp;#x7684;&amp;#x7C7B;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x52A8;&amp;#x6001;&amp;#x521B;&amp;#x5EFA;&amp;#x5E76;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;">
+<meta property="og:updated_time" content="2016-10-11T06:50:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javaassit学习总结">
-<meta name="twitter:description" content="要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：
-
-动态编译
-动态生成二进制字节码（.class）对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：
-动态创建新类或新接口的二进制字节码
-动态扩展现有类或接口的二进制字节码其中，CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一">
+<meta name="twitter:description" content="&amp;#x8981;&amp;#x60F3;&amp;#x5C06;&amp;#x7F16;&amp;#x8BD1;&amp;#x65F6;&amp;#x4E0D;&amp;#x5B58;&amp;#x5728;&amp;#x7684;&amp;#x7C7B;&amp;#x5728;&amp;#x8FD0;&amp;#x884C;&amp;#x65F6;&amp;#x52A8;&amp;#x6001;&amp;#x521B;&amp;#x5EFA;&amp;#x5E76;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;">
   
     <link rel="alternative" href="/atom.xml" title="Welee&#39;s blog" type="application/atom+xml">
   
@@ -180,60 +165,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：</p>
+        <p>&#x8981;&#x60F3;&#x5C06;&#x7F16;&#x8BD1;&#x65F6;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x5E76;&#x52A0;&#x8F7D;&#xFF0C;&#x901A;&#x5E38;&#x6709;&#x4E24;&#x79CD;&#x7B56;&#x7565;&#xFF1A;</p>
 <ol>
-<li>动态编译</li>
-<li>动态生成二进制字节码（.class）<br>对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：</li>
-<li>动态创建新类或新接口的二进制字节码</li>
-<li>动态扩展现有类或接口的二进制字节码<br>其中，CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一个轻量级的类库，但需要涉及到JVM的操作和指令；相比而言，Javassist要简单的多，完全是基于Java的API，但其性能相比前二者要差一些。<br>尽管如此，在性能要求相对低的场合，Javassist仍然十分有用，如JBoss中就调用了Javassist。<br>Javassist的官方网站如下：<br><a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/" target="_blank" rel="external">http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/</a><br>如下的链接是一个很好的Javassist代码示例：<br><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="external">http://yonglin4605.iteye.com/blog/1396494</a><br>如下的链接深入研究了Javassist中的一些语法，其中第8小节处对参数形式的总结很有作用：<br><a href="http://zhxing.iteye.com/blog/1703305" target="_blank" rel="external">http://zhxing.iteye.com/blog/1703305</a><br>如下的链接是IBM DW关于Javassist一个较为完整的教程：<br><a href="http://www.ibm.com/developerworks/cn/java/j-dyn0916/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-dyn0916/</a><br>如下的代码是动态创建Java类二进制字节码并通过反射调用的示例，可供参考：<br>[java] view plain copy<br>import java.lang.reflect.InvocationTargetException;<br>import java.lang.reflect.Method;  </li>
+<li>&#x52A8;&#x6001;&#x7F16;&#x8BD1;</li>
+<li>&#x52A8;&#x6001;&#x751F;&#x6210;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;&#xFF08;.class&#xFF09;<br>&#x5BF9;&#x4E8E;&#x7B2C;&#x4E8C;&#x79CD;&#x7B56;&#x7565;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5DF2;&#x7ECF;&#x6709;&#x8BF8;&#x591A;&#x6BD4;&#x8F83;&#x6210;&#x719F;&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x63D0;&#x4F9B;&#x652F;&#x6301;&#xFF0C;&#x5982;CGLib&#x3001;ASM&#x3001;Javassist&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x901A;&#x5E38;&#x90FD;&#x5177;&#x5907;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x529F;&#x80FD;&#xFF1A;</li>
+<li>&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x65B0;&#x7C7B;&#x6216;&#x65B0;&#x63A5;&#x53E3;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;</li>
+<li>&#x52A8;&#x6001;&#x6269;&#x5C55;&#x73B0;&#x6709;&#x7C7B;&#x6216;&#x63A5;&#x53E3;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;<br>&#x5176;&#x4E2D;&#xFF0C;CGLib&#x7684;&#x5E95;&#x5C42;&#x57FA;&#x4E8E;ASM&#x5B9E;&#x73B0;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x6548;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x751F;&#x6210;&#x5E93;&#xFF1B;&#x800C;ASM&#x662F;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x7C7B;&#x5E93;&#xFF0C;&#x4F46;&#x9700;&#x8981;&#x6D89;&#x53CA;&#x5230;JVM&#x7684;&#x64CD;&#x4F5C;&#x548C;&#x6307;&#x4EE4;&#xFF1B;&#x76F8;&#x6BD4;&#x800C;&#x8A00;&#xFF0C;Javassist&#x8981;&#x7B80;&#x5355;&#x7684;&#x591A;&#xFF0C;&#x5B8C;&#x5168;&#x662F;&#x57FA;&#x4E8E;Java&#x7684;API&#xFF0C;&#x4F46;&#x5176;&#x6027;&#x80FD;&#x76F8;&#x6BD4;&#x524D;&#x4E8C;&#x8005;&#x8981;&#x5DEE;&#x4E00;&#x4E9B;&#x3002;<br>&#x5C3D;&#x7BA1;&#x5982;&#x6B64;&#xFF0C;&#x5728;&#x6027;&#x80FD;&#x8981;&#x6C42;&#x76F8;&#x5BF9;&#x4F4E;&#x7684;&#x573A;&#x5408;&#xFF0C;Javassist&#x4ECD;&#x7136;&#x5341;&#x5206;&#x6709;&#x7528;&#xFF0C;&#x5982;JBoss&#x4E2D;&#x5C31;&#x8C03;&#x7528;&#x4E86;Javassist&#x3002;<br>Javassist&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x5982;&#x4E0B;&#xFF1A;<br><a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/" target="_blank" rel="external">http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;Javassist&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF1A;<br><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="external">http://yonglin4605.iteye.com/blog/1396494</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x4E86;Javassist&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x8BED;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;8&#x5C0F;&#x8282;&#x5904;&#x5BF9;&#x53C2;&#x6570;&#x5F62;&#x5F0F;&#x7684;&#x603B;&#x7ED3;&#x5F88;&#x6709;&#x4F5C;&#x7528;&#xFF1A;<br><a href="http://zhxing.iteye.com/blog/1703305" target="_blank" rel="external">http://zhxing.iteye.com/blog/1703305</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x662F;IBM DW&#x5173;&#x4E8E;Javassist&#x4E00;&#x4E2A;&#x8F83;&#x4E3A;&#x5B8C;&#x6574;&#x7684;&#x6559;&#x7A0B;&#xFF1A;<br><a href="http://www.ibm.com/developerworks/cn/java/j-dyn0916/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-dyn0916/</a><br>&#x5982;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x52A8;&#x6001;&#x521B;&#x5EFA;Java&#x7C7B;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x8C03;&#x7528;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x53EF;&#x4F9B;&#x53C2;&#x8003;&#xFF1A;</li>
 </ol>
-<p>import javassist.CannotCompileException;<br>import javassist.ClassPool;<br>import javassist.CtClass;<br>import javassist.CtConstructor;<br>import javassist.CtField;<br>import javassist.CtNewMethod;<br>import javassist.Modifier;<br>import javassist.NotFoundException;<br>import javassist.CtField.Initializer;  </p>
-<p>public class JavassistGenerator {  </p>
-<pre><code>public static void main(String[] args) throws CannotCompileException, NotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {  
-    // 创建类  
-    ClassPool pool = ClassPool.getDefault();  
-    CtClass cls = pool.makeClass(&quot;cn.ibm.com.TestClass&quot;);  
+<pre><code>import java.lang.reflect.InvocationTargetException;  
+import java.lang.reflect.Method;  
 
-    // 添加私有成员name及其getter、setter方法  
-    CtField param = new CtField(pool.get(&quot;java.lang.String&quot;), &quot;name&quot;, cls);  
-    param.setModifiers(Modifier.PRIVATE);  
-    cls.addMethod(CtNewMethod.setter(&quot;setName&quot;, param));  
-    cls.addMethod(CtNewMethod.getter(&quot;getName&quot;, param));  
-    cls.addField(param, Initializer.constant(&quot;&quot;));  
+import javassist.CannotCompileException;  
+import javassist.ClassPool;  
+import javassist.CtClass;  
+import javassist.CtConstructor;  
+import javassist.CtField;  
+import javassist.CtNewMethod;  
+import javassist.Modifier;  
+import javassist.NotFoundException;  
+import javassist.CtField.Initializer;  
 
-    // 添加无参的构造体  
-    CtConstructor cons = new CtConstructor(new CtClass[] {}, cls);  
-    cons.setBody(&quot;{name = \&quot;Brant\&quot;;}&quot;);  
-    cls.addConstructor(cons);  
+public class JavassistGenerator {
+    public static void main(String[] args) throws CannotCompileException, NotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {  
+        // &#x521B;&#x5EFA;&#x7C7B;  
+        ClassPool pool = ClassPool.getDefault();  
+        CtClass cls = pool.makeClass(&quot;cn.ibm.com.TestClass&quot;);
 
-    // 添加有参的构造体  
-    cons = new CtConstructor(new CtClass[] {pool.get(&quot;java.lang.String&quot;)}, cls);  
-    cons.setBody(&quot;{$0.name = $1;}&quot;);  
-    cls.addConstructor(cons);  
+        // &#x6DFB;&#x52A0;&#x79C1;&#x6709;&#x6210;&#x5458;name&#x53CA;&#x5176;getter&#x3001;setter&#x65B9;&#x6CD5;  
+        CtField param = new CtField(pool.get(&quot;java.lang.String&quot;), &quot;name&quot;, cls);  
+        param.setModifiers(Modifier.PRIVATE);  
+        cls.addMethod(CtNewMethod.setter(&quot;setName&quot;, param));  
+        cls.addMethod(CtNewMethod.getter(&quot;getName&quot;, param));  
+        cls.addField(param, Initializer.constant(&quot;&quot;));  
 
-    // 打印创建类的类名  
-    System.out.println(cls.toClass());  
+        // &#x6DFB;&#x52A0;&#x65E0;&#x53C2;&#x7684;&#x6784;&#x9020;&#x4F53;  
+        CtConstructor cons = new CtConstructor(new CtClass[] {}, cls);  
+        cons.setBody(&quot;{name = \&quot;Brant\&quot;;}&quot;);  
+        cls.addConstructor(cons);  
 
-    // 通过反射创建无参的实例，并调用getName方法  
-    Object o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).newInstance();  
-    Method getter = o.getClass().getMethod(&quot;getName&quot;);  
-    System.out.println(getter.invoke(o));  
+        // &#x6DFB;&#x52A0;&#x6709;&#x53C2;&#x7684;&#x6784;&#x9020;&#x4F53;  
+        cons = new CtConstructor(new CtClass[] {pool.get(&quot;java.lang.String&quot;)}, cls);  
+        cons.setBody(&quot;{$0.name = $1;}&quot;);  
+        cls.addConstructor(cons);  
 
-    // 调用其setName方法  
-    Method setter = o.getClass().getMethod(&quot;setName&quot;, new Class[] {String.class});  
-    setter.invoke(o, &quot;Adam&quot;);  
-    System.out.println(getter.invoke(o));  
+        // &#x6253;&#x5370;&#x521B;&#x5EFA;&#x7C7B;&#x7684;&#x7C7B;&#x540D;  
+        System.out.println(cls.toClass());  
 
-    // 通过反射创建有参的实例，并调用getName方法  
-    o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).getConstructor(String.class).newInstance(&quot;Liu Jian&quot;);  
-    getter = o.getClass().getMethod(&quot;getName&quot;);  
-    System.out.println(getter.invoke(o));  
-}  
-</code></pre><p>}  </p>
-<p>最后需要特别注意的是：</p>
+        // &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x521B;&#x5EFA;&#x65E0;&#x53C2;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x8C03;&#x7528;getName&#x65B9;&#x6CD5;  
+        Object o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).newInstance();  
+        Method getter = o.getClass().getMethod(&quot;getName&quot;);  
+        System.out.println(getter.invoke(o));  
+
+        // &#x8C03;&#x7528;&#x5176;setName&#x65B9;&#x6CD5;  
+        Method setter = o.getClass().getMethod(&quot;setName&quot;, new Class[] {String.class});  
+        setter.invoke(o, &quot;Adam&quot;);  
+        System.out.println(getter.invoke(o));  
+
+        // &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x521B;&#x5EFA;&#x6709;&#x53C2;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x8C03;&#x7528;getName&#x65B9;&#x6CD5;  
+        o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).getConstructor(String.class).newInstance(&quot;Liu Jian&quot;);  
+        getter = o.getClass().getMethod(&quot;getName&quot;);  
+        System.out.println(getter.invoke(o));  
+    }
+}
+</code></pre><p>&#x6700;&#x540E;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;</p>
 <ol>
-<li>Javassist不支持要创建或注入的类中存在泛型参数</li>
-<li>Javassist对@类型的注解（Annotation）只支持查询，不支持添加或修改</li>
+<li>Javassist&#x4E0D;&#x652F;&#x6301;&#x8981;&#x521B;&#x5EFA;&#x6216;&#x6CE8;&#x5165;&#x7684;&#x7C7B;&#x4E2D;&#x5B58;&#x5728;&#x6CDB;&#x578B;&#x53C2;&#x6570;</li>
+<li>Javassist&#x5BF9;@&#x7C7B;&#x578B;&#x7684;&#x6CE8;&#x89E3;&#xFF08;Annotation&#xFF09;&#x53EA;&#x652F;&#x6301;&#x67E5;&#x8BE2;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x6DFB;&#x52A0;&#x6216;&#x4FEE;&#x6539;</li>
 </ol>
 
       
@@ -244,6 +241,11 @@
   	<time datetime="2016-10-11T06:16:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-11</time>
 </a>
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javaassit/">Javaassit</a></li></ul>
+	</div>
+
       
 
       <div class="clearfix"></div>
@@ -369,7 +371,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				
+    				<a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javaassit/" style="font-size: 10px;">Javaassit</a>
     			</div>
     	</section>
     

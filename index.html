@@ -166,60 +166,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>要想将编译时不存在的类在运行时动态创建并加载，通常有两种策略：</p>
+        <p>&#x8981;&#x60F3;&#x5C06;&#x7F16;&#x8BD1;&#x65F6;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x5E76;&#x52A0;&#x8F7D;&#xFF0C;&#x901A;&#x5E38;&#x6709;&#x4E24;&#x79CD;&#x7B56;&#x7565;&#xFF1A;</p>
 <ol>
-<li>动态编译</li>
-<li>动态生成二进制字节码（.class）<br>对于第二种策略，实际上已经有诸多比较成熟的开源项目提供支持，如CGLib、ASM、Javassist等。这些开源项目通常都具备两方面的功能：</li>
-<li>动态创建新类或新接口的二进制字节码</li>
-<li>动态扩展现有类或接口的二进制字节码<br>其中，CGLib的底层基于ASM实现，是一个高效高性能的生成库；而ASM是一个轻量级的类库，但需要涉及到JVM的操作和指令；相比而言，Javassist要简单的多，完全是基于Java的API，但其性能相比前二者要差一些。<br>尽管如此，在性能要求相对低的场合，Javassist仍然十分有用，如JBoss中就调用了Javassist。<br>Javassist的官方网站如下：<br><a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/" target="_blank" rel="external">http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/</a><br>如下的链接是一个很好的Javassist代码示例：<br><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="external">http://yonglin4605.iteye.com/blog/1396494</a><br>如下的链接深入研究了Javassist中的一些语法，其中第8小节处对参数形式的总结很有作用：<br><a href="http://zhxing.iteye.com/blog/1703305" target="_blank" rel="external">http://zhxing.iteye.com/blog/1703305</a><br>如下的链接是IBM DW关于Javassist一个较为完整的教程：<br><a href="http://www.ibm.com/developerworks/cn/java/j-dyn0916/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-dyn0916/</a><br>如下的代码是动态创建Java类二进制字节码并通过反射调用的示例，可供参考：<br>[java] view plain copy<br>import java.lang.reflect.InvocationTargetException;<br>import java.lang.reflect.Method;  </li>
+<li>&#x52A8;&#x6001;&#x7F16;&#x8BD1;</li>
+<li>&#x52A8;&#x6001;&#x751F;&#x6210;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;&#xFF08;.class&#xFF09;<br>&#x5BF9;&#x4E8E;&#x7B2C;&#x4E8C;&#x79CD;&#x7B56;&#x7565;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5DF2;&#x7ECF;&#x6709;&#x8BF8;&#x591A;&#x6BD4;&#x8F83;&#x6210;&#x719F;&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x63D0;&#x4F9B;&#x652F;&#x6301;&#xFF0C;&#x5982;CGLib&#x3001;ASM&#x3001;Javassist&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x901A;&#x5E38;&#x90FD;&#x5177;&#x5907;&#x4E24;&#x65B9;&#x9762;&#x7684;&#x529F;&#x80FD;&#xFF1A;</li>
+<li>&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x65B0;&#x7C7B;&#x6216;&#x65B0;&#x63A5;&#x53E3;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;</li>
+<li>&#x52A8;&#x6001;&#x6269;&#x5C55;&#x73B0;&#x6709;&#x7C7B;&#x6216;&#x63A5;&#x53E3;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;<br>&#x5176;&#x4E2D;&#xFF0C;CGLib&#x7684;&#x5E95;&#x5C42;&#x57FA;&#x4E8E;ASM&#x5B9E;&#x73B0;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x6548;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x751F;&#x6210;&#x5E93;&#xFF1B;&#x800C;ASM&#x662F;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x7C7B;&#x5E93;&#xFF0C;&#x4F46;&#x9700;&#x8981;&#x6D89;&#x53CA;&#x5230;JVM&#x7684;&#x64CD;&#x4F5C;&#x548C;&#x6307;&#x4EE4;&#xFF1B;&#x76F8;&#x6BD4;&#x800C;&#x8A00;&#xFF0C;Javassist&#x8981;&#x7B80;&#x5355;&#x7684;&#x591A;&#xFF0C;&#x5B8C;&#x5168;&#x662F;&#x57FA;&#x4E8E;Java&#x7684;API&#xFF0C;&#x4F46;&#x5176;&#x6027;&#x80FD;&#x76F8;&#x6BD4;&#x524D;&#x4E8C;&#x8005;&#x8981;&#x5DEE;&#x4E00;&#x4E9B;&#x3002;<br>&#x5C3D;&#x7BA1;&#x5982;&#x6B64;&#xFF0C;&#x5728;&#x6027;&#x80FD;&#x8981;&#x6C42;&#x76F8;&#x5BF9;&#x4F4E;&#x7684;&#x573A;&#x5408;&#xFF0C;Javassist&#x4ECD;&#x7136;&#x5341;&#x5206;&#x6709;&#x7528;&#xFF0C;&#x5982;JBoss&#x4E2D;&#x5C31;&#x8C03;&#x7528;&#x4E86;Javassist&#x3002;<br>Javassist&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x5982;&#x4E0B;&#xFF1A;<br><a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/" target="_blank" rel="external">http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;Javassist&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF1A;<br><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="external">http://yonglin4605.iteye.com/blog/1396494</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x4E86;Javassist&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x8BED;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;8&#x5C0F;&#x8282;&#x5904;&#x5BF9;&#x53C2;&#x6570;&#x5F62;&#x5F0F;&#x7684;&#x603B;&#x7ED3;&#x5F88;&#x6709;&#x4F5C;&#x7528;&#xFF1A;<br><a href="http://zhxing.iteye.com/blog/1703305" target="_blank" rel="external">http://zhxing.iteye.com/blog/1703305</a><br>&#x5982;&#x4E0B;&#x7684;&#x94FE;&#x63A5;&#x662F;IBM DW&#x5173;&#x4E8E;Javassist&#x4E00;&#x4E2A;&#x8F83;&#x4E3A;&#x5B8C;&#x6574;&#x7684;&#x6559;&#x7A0B;&#xFF1A;<br><a href="http://www.ibm.com/developerworks/cn/java/j-dyn0916/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-dyn0916/</a><br>&#x5982;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x52A8;&#x6001;&#x521B;&#x5EFA;Java&#x7C7B;&#x4E8C;&#x8FDB;&#x5236;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x8C03;&#x7528;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x53EF;&#x4F9B;&#x53C2;&#x8003;&#xFF1A;</li>
 </ol>
-<p>import javassist.CannotCompileException;<br>import javassist.ClassPool;<br>import javassist.CtClass;<br>import javassist.CtConstructor;<br>import javassist.CtField;<br>import javassist.CtNewMethod;<br>import javassist.Modifier;<br>import javassist.NotFoundException;<br>import javassist.CtField.Initializer;  </p>
-<p>public class JavassistGenerator {  </p>
-<pre><code>public static void main(String[] args) throws CannotCompileException, NotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {  
-    // 创建类  
-    ClassPool pool = ClassPool.getDefault();  
-    CtClass cls = pool.makeClass(&quot;cn.ibm.com.TestClass&quot;);  
+<pre><code>import java.lang.reflect.InvocationTargetException;  
+import java.lang.reflect.Method;  
 
-    // 添加私有成员name及其getter、setter方法  
-    CtField param = new CtField(pool.get(&quot;java.lang.String&quot;), &quot;name&quot;, cls);  
-    param.setModifiers(Modifier.PRIVATE);  
-    cls.addMethod(CtNewMethod.setter(&quot;setName&quot;, param));  
-    cls.addMethod(CtNewMethod.getter(&quot;getName&quot;, param));  
-    cls.addField(param, Initializer.constant(&quot;&quot;));  
+import javassist.CannotCompileException;  
+import javassist.ClassPool;  
+import javassist.CtClass;  
+import javassist.CtConstructor;  
+import javassist.CtField;  
+import javassist.CtNewMethod;  
+import javassist.Modifier;  
+import javassist.NotFoundException;  
+import javassist.CtField.Initializer;  
 
-    // 添加无参的构造体  
-    CtConstructor cons = new CtConstructor(new CtClass[] {}, cls);  
-    cons.setBody(&quot;{name = \&quot;Brant\&quot;;}&quot;);  
-    cls.addConstructor(cons);  
+public class JavassistGenerator {
+    public static void main(String[] args) throws CannotCompileException, NotFoundException, InstantiationException, IllegalAccessException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {  
+        // &#x521B;&#x5EFA;&#x7C7B;  
+        ClassPool pool = ClassPool.getDefault();  
+        CtClass cls = pool.makeClass(&quot;cn.ibm.com.TestClass&quot;);
 
-    // 添加有参的构造体  
-    cons = new CtConstructor(new CtClass[] {pool.get(&quot;java.lang.String&quot;)}, cls);  
-    cons.setBody(&quot;{$0.name = $1;}&quot;);  
-    cls.addConstructor(cons);  
+        // &#x6DFB;&#x52A0;&#x79C1;&#x6709;&#x6210;&#x5458;name&#x53CA;&#x5176;getter&#x3001;setter&#x65B9;&#x6CD5;  
+        CtField param = new CtField(pool.get(&quot;java.lang.String&quot;), &quot;name&quot;, cls);  
+        param.setModifiers(Modifier.PRIVATE);  
+        cls.addMethod(CtNewMethod.setter(&quot;setName&quot;, param));  
+        cls.addMethod(CtNewMethod.getter(&quot;getName&quot;, param));  
+        cls.addField(param, Initializer.constant(&quot;&quot;));  
 
-    // 打印创建类的类名  
-    System.out.println(cls.toClass());  
+        // &#x6DFB;&#x52A0;&#x65E0;&#x53C2;&#x7684;&#x6784;&#x9020;&#x4F53;  
+        CtConstructor cons = new CtConstructor(new CtClass[] {}, cls);  
+        cons.setBody(&quot;{name = \&quot;Brant\&quot;;}&quot;);  
+        cls.addConstructor(cons);  
 
-    // 通过反射创建无参的实例，并调用getName方法  
-    Object o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).newInstance();  
-    Method getter = o.getClass().getMethod(&quot;getName&quot;);  
-    System.out.println(getter.invoke(o));  
+        // &#x6DFB;&#x52A0;&#x6709;&#x53C2;&#x7684;&#x6784;&#x9020;&#x4F53;  
+        cons = new CtConstructor(new CtClass[] {pool.get(&quot;java.lang.String&quot;)}, cls);  
+        cons.setBody(&quot;{$0.name = $1;}&quot;);  
+        cls.addConstructor(cons);  
 
-    // 调用其setName方法  
-    Method setter = o.getClass().getMethod(&quot;setName&quot;, new Class[] {String.class});  
-    setter.invoke(o, &quot;Adam&quot;);  
-    System.out.println(getter.invoke(o));  
+        // &#x6253;&#x5370;&#x521B;&#x5EFA;&#x7C7B;&#x7684;&#x7C7B;&#x540D;  
+        System.out.println(cls.toClass());  
 
-    // 通过反射创建有参的实例，并调用getName方法  
-    o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).getConstructor(String.class).newInstance(&quot;Liu Jian&quot;);  
-    getter = o.getClass().getMethod(&quot;getName&quot;);  
-    System.out.println(getter.invoke(o));  
-}  
-</code></pre><p>}  </p>
-<p>最后需要特别注意的是：</p>
+        // &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x521B;&#x5EFA;&#x65E0;&#x53C2;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x8C03;&#x7528;getName&#x65B9;&#x6CD5;  
+        Object o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).newInstance();  
+        Method getter = o.getClass().getMethod(&quot;getName&quot;);  
+        System.out.println(getter.invoke(o));  
+
+        // &#x8C03;&#x7528;&#x5176;setName&#x65B9;&#x6CD5;  
+        Method setter = o.getClass().getMethod(&quot;setName&quot;, new Class[] {String.class});  
+        setter.invoke(o, &quot;Adam&quot;);  
+        System.out.println(getter.invoke(o));  
+
+        // &#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x521B;&#x5EFA;&#x6709;&#x53C2;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x8C03;&#x7528;getName&#x65B9;&#x6CD5;  
+        o = Class.forName(&quot;cn.ibm.com.TestClass&quot;).getConstructor(String.class).newInstance(&quot;Liu Jian&quot;);  
+        getter = o.getClass().getMethod(&quot;getName&quot;);  
+        System.out.println(getter.invoke(o));  
+    }
+}
+</code></pre><p>&#x6700;&#x540E;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;</p>
 <ol>
-<li>Javassist不支持要创建或注入的类中存在泛型参数</li>
-<li>Javassist对@类型的注解（Annotation）只支持查询，不支持添加或修改</li>
+<li>Javassist&#x4E0D;&#x652F;&#x6301;&#x8981;&#x521B;&#x5EFA;&#x6216;&#x6CE8;&#x5165;&#x7684;&#x7C7B;&#x4E2D;&#x5B58;&#x5728;&#x6CDB;&#x578B;&#x53C2;&#x6570;</li>
+<li>Javassist&#x5BF9;@&#x7C7B;&#x578B;&#x7684;&#x6CE8;&#x89E3;&#xFF08;Annotation&#xFF09;&#x53EA;&#x652F;&#x6301;&#x67E5;&#x8BE2;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x6DFB;&#x52A0;&#x6216;&#x4FEE;&#x6539;</li>
 </ol>
 
       
@@ -230,6 +242,11 @@
   	<time datetime="2016-10-11T06:16:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-11</time>
 </a>
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javaassit/">Javaassit</a></li></ul>
+	</div>
+
       
 
       <div class="clearfix"></div>
@@ -265,26 +282,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nginx+Tomcat+SSL<br>实际上，大规模的网站都有很多台Web服务器和应用服务器组成，用户的请求可能是经由 Varnish、HAProxy、Nginx之后才到应用服务器，中间有好几层。而中小规模的典型部署常见的是 Nginx+Tomcat 这种两层配置，而Tomcat 会多于一台，Nginx 作为静态文件处理和负载均衡。</p>
-<p>如果Nginx作为前端代理的话，则Tomcat根本不需要自己处理 https，全是Nginx处理的。用户首先和Nginx建立连接，完成SSL握手，而后Nginx 作为代理以 http 协议将请求转给 tomcat 处理，Nginx再把 tomcat 的输出通过SSL 加密发回给用户，这中间是透明的，Tomcat只是在处理 http 请求而已。因此，这种情况下不需要配置 Tomcat 的SSL，只需要配置 Nginx 的SSL 和 Proxy。</p>
-<p>在代理模式下，Tomcat 如何识别用户的直接请求（URL、IP、https还是http )？<br>在透明代理下，如果不做任何配置Tomcat 认为所有的请求都是 Nginx 发出来的，这样会导致如下的错误结果：</p>
-<pre><code>request.getScheme()  //总是 http，而不是实际的http或https
-request.isSecure()  //总是false（因为总是http）
-request.getRemoteAddr()  //总是 nginx 请求的 IP，而不是用户的IP
-request.getRequestURL()  //总是 nginx 请求的URL 而不是用户实际请求的 URL
-request.getServerName  //总是nginx请求的ip
-request.getServerPort //总是nginx请求的端口
-response.sendRedirect( 相对url )  //总是重定向到 http 上 （因为认为当前是 http 请求）
-</code></pre><p>如果程序中把这些当实际用户请求做处理就有问题了。解决方法很简单，只需要分别配置一下 Nginx 和 Tomcat 就好了，而不用改程序。<br>配置 Nginx 的转发选项：</p>
-<pre><code>proxy_set_header       Host $host;   //解决getRequestURL、getServerName、getServerPort
-//如果nginx是80服务，上面就够,代表默认servlet_port是80；否则需要Host $host:$server_port，不配置servlet_port会导致丢失端口
+        <p>Nginx+Tomcat+SSL<br>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x5927;&#x89C4;&#x6A21;&#x7684;&#x7F51;&#x7AD9;&#x90FD;&#x6709;&#x5F88;&#x591A;&#x53F0;Web&#x670D;&#x52A1;&#x5668;&#x548C;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x7EC4;&#x6210;&#xFF0C;&#x7528;&#x6237;&#x7684;&#x8BF7;&#x6C42;&#x53EF;&#x80FD;&#x662F;&#x7ECF;&#x7531; Varnish&#x3001;HAProxy&#x3001;Nginx&#x4E4B;&#x540E;&#x624D;&#x5230;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4E2D;&#x95F4;&#x6709;&#x597D;&#x51E0;&#x5C42;&#x3002;&#x800C;&#x4E2D;&#x5C0F;&#x89C4;&#x6A21;&#x7684;&#x5178;&#x578B;&#x90E8;&#x7F72;&#x5E38;&#x89C1;&#x7684;&#x662F; Nginx+Tomcat &#x8FD9;&#x79CD;&#x4E24;&#x5C42;&#x914D;&#x7F6E;&#xFF0C;&#x800C;Tomcat &#x4F1A;&#x591A;&#x4E8E;&#x4E00;&#x53F0;&#xFF0C;Nginx &#x4F5C;&#x4E3A;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x5904;&#x7406;&#x548C;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p>
+<p>&#x5982;&#x679C;Nginx&#x4F5C;&#x4E3A;&#x524D;&#x7AEF;&#x4EE3;&#x7406;&#x7684;&#x8BDD;&#xFF0C;&#x5219;Tomcat&#x6839;&#x672C;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5904;&#x7406; https&#xFF0C;&#x5168;&#x662F;Nginx&#x5904;&#x7406;&#x7684;&#x3002;&#x7528;&#x6237;&#x9996;&#x5148;&#x548C;Nginx&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#xFF0C;&#x5B8C;&#x6210;SSL&#x63E1;&#x624B;&#xFF0C;&#x800C;&#x540E;Nginx &#x4F5C;&#x4E3A;&#x4EE3;&#x7406;&#x4EE5; http &#x534F;&#x8BAE;&#x5C06;&#x8BF7;&#x6C42;&#x8F6C;&#x7ED9; tomcat &#x5904;&#x7406;&#xFF0C;Nginx&#x518D;&#x628A; tomcat &#x7684;&#x8F93;&#x51FA;&#x901A;&#x8FC7;SSL &#x52A0;&#x5BC6;&#x53D1;&#x56DE;&#x7ED9;&#x7528;&#x6237;&#xFF0C;&#x8FD9;&#x4E2D;&#x95F4;&#x662F;&#x900F;&#x660E;&#x7684;&#xFF0C;Tomcat&#x53EA;&#x662F;&#x5728;&#x5904;&#x7406; http &#x8BF7;&#x6C42;&#x800C;&#x5DF2;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x9700;&#x8981;&#x914D;&#x7F6E; Tomcat &#x7684;SSL&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x914D;&#x7F6E; Nginx &#x7684;SSL &#x548C; Proxy&#x3002;</p>
+<p>&#x5728;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;Tomcat &#x5982;&#x4F55;&#x8BC6;&#x522B;&#x7528;&#x6237;&#x7684;&#x76F4;&#x63A5;&#x8BF7;&#x6C42;&#xFF08;URL&#x3001;IP&#x3001;https&#x8FD8;&#x662F;http )&#xFF1F;<br>&#x5728;&#x900F;&#x660E;&#x4EE3;&#x7406;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x914D;&#x7F6E;Tomcat &#x8BA4;&#x4E3A;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x662F; Nginx &#x53D1;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x5BFC;&#x81F4;&#x5982;&#x4E0B;&#x7684;&#x9519;&#x8BEF;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>request.getScheme()  //&#x603B;&#x662F; http&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5B9E;&#x9645;&#x7684;http&#x6216;https
+request.isSecure()  //&#x603B;&#x662F;false&#xFF08;&#x56E0;&#x4E3A;&#x603B;&#x662F;http&#xFF09;
+request.getRemoteAddr()  //&#x603B;&#x662F; nginx &#x8BF7;&#x6C42;&#x7684; IP&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7528;&#x6237;&#x7684;IP
+request.getRequestURL()  //&#x603B;&#x662F; nginx &#x8BF7;&#x6C42;&#x7684;URL &#x800C;&#x4E0D;&#x662F;&#x7528;&#x6237;&#x5B9E;&#x9645;&#x8BF7;&#x6C42;&#x7684; URL
+request.getServerName  //&#x603B;&#x662F;nginx&#x8BF7;&#x6C42;&#x7684;ip
+request.getServerPort //&#x603B;&#x662F;nginx&#x8BF7;&#x6C42;&#x7684;&#x7AEF;&#x53E3;
+response.sendRedirect( &#x76F8;&#x5BF9;url )  //&#x603B;&#x662F;&#x91CD;&#x5B9A;&#x5411;&#x5230; http &#x4E0A; &#xFF08;&#x56E0;&#x4E3A;&#x8BA4;&#x4E3A;&#x5F53;&#x524D;&#x662F; http &#x8BF7;&#x6C42;&#xFF09;
+</code></pre><p>&#x5982;&#x679C;&#x7A0B;&#x5E8F;&#x4E2D;&#x628A;&#x8FD9;&#x4E9B;&#x5F53;&#x5B9E;&#x9645;&#x7528;&#x6237;&#x8BF7;&#x6C42;&#x505A;&#x5904;&#x7406;&#x5C31;&#x6709;&#x95EE;&#x9898;&#x4E86;&#x3002;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5206;&#x522B;&#x914D;&#x7F6E;&#x4E00;&#x4E0B; Nginx &#x548C; Tomcat &#x5C31;&#x597D;&#x4E86;&#xFF0C;&#x800C;&#x4E0D;&#x7528;&#x6539;&#x7A0B;&#x5E8F;&#x3002;<br>&#x914D;&#x7F6E; Nginx &#x7684;&#x8F6C;&#x53D1;&#x9009;&#x9879;&#xFF1A;</p>
+<pre><code>proxy_set_header       Host $host;   //&#x89E3;&#x51B3;getRequestURL&#x3001;getServerName&#x3001;getServerPort
+//&#x5982;&#x679C;nginx&#x662F;80&#x670D;&#x52A1;&#xFF0C;&#x4E0A;&#x9762;&#x5C31;&#x591F;,&#x4EE3;&#x8868;&#x9ED8;&#x8BA4;servlet_port&#x662F;80&#xFF1B;&#x5426;&#x5219;&#x9700;&#x8981;Host $host:$server_port&#xFF0C;&#x4E0D;&#x914D;&#x7F6E;servlet_port&#x4F1A;&#x5BFC;&#x81F4;&#x4E22;&#x5931;&#x7AEF;&#x53E3;
 
 proxy_set_header  X-Real-IP  $remote_addr;
 proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header X-Forwarded-Proto  $scheme; //解决getScheme，isSecure，sendRedirect
-</code></pre><p>配置Tomcat server.xml 的 Engine 模块下配置一个 Value：</p>
+proxy_set_header X-Forwarded-Proto  $scheme; //&#x89E3;&#x51B3;getScheme&#xFF0C;isSecure&#xFF0C;sendRedirect
+</code></pre><p>&#x914D;&#x7F6E;Tomcat server.xml &#x7684; Engine &#x6A21;&#x5757;&#x4E0B;&#x914D;&#x7F6E;&#x4E00;&#x4E2A; Value&#xFF1A;</p>
 <pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.RemoteIpValve&quot; remoteIpHeader=&quot;X-Forwarded-For&quot; protocolHeader=&quot;X-Forwarded-Proto&quot; protocolHeaderHttpsValue=&quot;https&quot; /&gt;
-</code></pre><p>配置双方的 X-Forwarded-Proto 就是为了正确地识别实际用户发出的协议是 http 还是 https。X-Forwarded-For 是为了获得实际用户的 IP。<br>这样以上5项测试就都变为正确的结果了，就像用户在直接访问 Tomcat 一样</p>
+</code></pre><p>&#x914D;&#x7F6E;&#x53CC;&#x65B9;&#x7684; X-Forwarded-Proto &#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x6B63;&#x786E;&#x5730;&#x8BC6;&#x522B;&#x5B9E;&#x9645;&#x7528;&#x6237;&#x53D1;&#x51FA;&#x7684;&#x534F;&#x8BAE;&#x662F; http &#x8FD8;&#x662F; https&#x3002;X-Forwarded-For &#x662F;&#x4E3A;&#x4E86;&#x83B7;&#x5F97;&#x5B9E;&#x9645;&#x7528;&#x6237;&#x7684; IP&#x3002;<br>&#x8FD9;&#x6837;&#x4EE5;&#x4E0A;5&#x9879;&#x6D4B;&#x8BD5;&#x5C31;&#x90FD;&#x53D8;&#x4E3A;&#x6B63;&#x786E;&#x7684;&#x7ED3;&#x679C;&#x4E86;&#xFF0C;&#x5C31;&#x50CF;&#x7528;&#x6237;&#x5728;&#x76F4;&#x63A5;&#x8BBF;&#x95EE; Tomcat &#x4E00;&#x6837;</p>
 
       
     </div>
@@ -329,13 +346,13 @@ proxy_set_header X-Forwarded-Proto  $scheme; //解决getScheme，isSecure，send
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>有的时候，可能我们需要在程序运行期间，动态创建字节码并运行。最常见的使用场景就是Spring框架中的动态代理AOP，其本质是Spring框架在运行期间动态创建了一个被代理对象的子类，通过继承来实现代理机制（正因为是通过继承实现的代理，因此Spring aop不能代理终态类，不能代理类中的终态方法）。在Spring中，使用了一个第三方的字节码生成项目。实际项目中，如果我们有类似需求，当然也可以用这种方法，但是姑且不说这样做的繁琐程度，光是查看这些项目的API文档就足以头疼一阵了，对于某些项目中只有一个很小点需要类似功能来说，这样做的成本略微有点高。（类似这样现成的项目有javassist、cglib）</p>
-<p>另一种方法是自己从零开始，直接创建字节码，参考Oracle的文档，自己做一个实现。不过这在理论上可行，实际上比第一种方法难度更高。</p>
-<p>最后一种方法，就是本文要介绍的方法，即程序动态的生成Java源文件，由JDK进行编译，最后动态加载到JVM并运行。</p>
-<p>变通<br>由于Java源文件相对较容易生成，是纯文本文件。而Java的编译器是自举的，也就是说Java编译器就是用Java本身编写的，因此从JDK 1.6开始，编译器相关API就一直在SDK中，所以，我们也不需要通过调用命令行的方式来控制javac来编译我们动态生成的Java源文件。</p>
-<p>实例<br>比如存在一个/home/test/src.java的文件需要被编译成.class文件：</p>
-<p>JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();<br>int compilationResult = compiler.run(null, null, null, “/home/test/src.java”);<br>这样就会把/home/test/src.java编译成src.class，但是这样操作要求源文件在磁盘上，而且编译后的字节码也会被写到磁盘上。有的时候，我们的Java源文件可能是在内存中动态生成，亦或者是从网络上获取的，只是为了一次执行，不希望写入磁盘。</p>
-<p>出于这样的目的，在查阅相关类的API文档后，发现是可以实现这样目的的。只要继承ForwardingJavaFileManager类就可以实现从内存中直接加载Java源文件，继承并重写URLClassLoader.findClass()就可以实现将编译结果直接以byte[]形式返回，而不再写入到磁盘文件。（完整代码在文末）</p>
+        <h3 id="&#x9700;&#x6C42;"><a href="#&#x9700;&#x6C42;" class="headerlink" title="&#x9700;&#x6C42;"></a>&#x9700;&#x6C42;</h3><p>&#x6709;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x80FD;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#xFF0C;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x5B57;&#x8282;&#x7801;&#x5E76;&#x8FD0;&#x884C;&#x3002;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x5C31;&#x662F;Spring&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x52A8;&#x6001;&#x4EE3;&#x7406;AOP&#xFF0C;&#x5176;&#x672C;&#x8D28;&#x662F;Spring&#x6846;&#x67B6;&#x5728;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x88AB;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x6765;&#x5B9E;&#x73B0;&#x4EE3;&#x7406;&#x673A;&#x5236;&#xFF08;&#x6B63;&#x56E0;&#x4E3A;&#x662F;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x5B9E;&#x73B0;&#x7684;&#x4EE3;&#x7406;&#xFF0C;&#x56E0;&#x6B64;Spring aop&#x4E0D;&#x80FD;&#x4EE3;&#x7406;&#x7EC8;&#x6001;&#x7C7B;&#xFF0C;&#x4E0D;&#x80FD;&#x4EE3;&#x7406;&#x7C7B;&#x4E2D;&#x7684;&#x7EC8;&#x6001;&#x65B9;&#x6CD5;&#xFF09;&#x3002;&#x5728;Spring&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x7B2C;&#x4E09;&#x65B9;&#x7684;&#x5B57;&#x8282;&#x7801;&#x751F;&#x6210;&#x9879;&#x76EE;&#x3002;&#x5B9E;&#x9645;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6709;&#x7C7B;&#x4F3C;&#x9700;&#x6C42;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x59D1;&#x4E14;&#x4E0D;&#x8BF4;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x7E41;&#x7410;&#x7A0B;&#x5EA6;&#xFF0C;&#x5149;&#x662F;&#x67E5;&#x770B;&#x8FD9;&#x4E9B;&#x9879;&#x76EE;&#x7684;API&#x6587;&#x6863;&#x5C31;&#x8DB3;&#x4EE5;&#x5934;&#x75BC;&#x4E00;&#x9635;&#x4E86;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x9879;&#x76EE;&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x70B9;&#x9700;&#x8981;&#x7C7B;&#x4F3C;&#x529F;&#x80FD;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x6210;&#x672C;&#x7565;&#x5FAE;&#x6709;&#x70B9;&#x9AD8;&#x3002;&#xFF08;&#x7C7B;&#x4F3C;&#x8FD9;&#x6837;&#x73B0;&#x6210;&#x7684;&#x9879;&#x76EE;&#x6709;javassist&#x3001;cglib&#xFF09;</p>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x81EA;&#x5DF1;&#x4ECE;&#x96F6;&#x5F00;&#x59CB;&#xFF0C;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x53C2;&#x8003;Oracle&#x7684;&#x6587;&#x6863;&#xFF0C;&#x81EA;&#x5DF1;&#x505A;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x5728;&#x7406;&#x8BBA;&#x4E0A;&#x53EF;&#x884C;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x6BD4;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x96BE;&#x5EA6;&#x66F4;&#x9AD8;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x672C;&#x6587;&#x8981;&#x4ECB;&#x7ECD;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5373;&#x7A0B;&#x5E8F;&#x52A8;&#x6001;&#x7684;&#x751F;&#x6210;Java&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x7531;JDK&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x6700;&#x540E;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x5230;JVM&#x5E76;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x53D8;&#x901A;<br>&#x7531;&#x4E8E;Java&#x6E90;&#x6587;&#x4EF6;&#x76F8;&#x5BF9;&#x8F83;&#x5BB9;&#x6613;&#x751F;&#x6210;&#xFF0C;&#x662F;&#x7EAF;&#x6587;&#x672C;&#x6587;&#x4EF6;&#x3002;&#x800C;Java&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x662F;&#x81EA;&#x4E3E;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;Java&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x662F;&#x7528;Java&#x672C;&#x8EAB;&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x4ECE;JDK 1.6&#x5F00;&#x59CB;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x76F8;&#x5173;API&#x5C31;&#x4E00;&#x76F4;&#x5728;SDK&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x63A7;&#x5236;javac&#x6765;&#x7F16;&#x8BD1;&#x6211;&#x4EEC;&#x52A8;&#x6001;&#x751F;&#x6210;&#x7684;Java&#x6E90;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5B9E;&#x4F8B;<br>&#x6BD4;&#x5982;&#x5B58;&#x5728;&#x4E00;&#x4E2A;/home/test/src.java&#x7684;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x88AB;&#x7F16;&#x8BD1;&#x6210;.class&#x6587;&#x4EF6;&#xFF1A;</p>
+<p>JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();<br>int compilationResult = compiler.run(null, null, null, &#x201C;/home/test/src.java&#x201D;);<br>&#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x628A;/home/test/src.java&#x7F16;&#x8BD1;&#x6210;src.class&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x64CD;&#x4F5C;&#x8981;&#x6C42;&#x6E90;&#x6587;&#x4EF6;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#xFF0C;&#x800C;&#x4E14;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x5B57;&#x8282;&#x7801;&#x4E5F;&#x4F1A;&#x88AB;&#x5199;&#x5230;&#x78C1;&#x76D8;&#x4E0A;&#x3002;&#x6709;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x7684;Java&#x6E90;&#x6587;&#x4EF6;&#x53EF;&#x80FD;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x52A8;&#x6001;&#x751F;&#x6210;&#xFF0C;&#x4EA6;&#x6216;&#x8005;&#x662F;&#x4ECE;&#x7F51;&#x7EDC;&#x4E0A;&#x83B7;&#x53D6;&#x7684;&#xFF0C;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x4E00;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x4E0D;&#x5E0C;&#x671B;&#x5199;&#x5165;&#x78C1;&#x76D8;&#x3002;</p>
+<p>&#x51FA;&#x4E8E;&#x8FD9;&#x6837;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x5728;&#x67E5;&#x9605;&#x76F8;&#x5173;&#x7C7B;&#x7684;API&#x6587;&#x6863;&#x540E;&#xFF0C;&#x53D1;&#x73B0;&#x662F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x8FD9;&#x6837;&#x76EE;&#x7684;&#x7684;&#x3002;&#x53EA;&#x8981;&#x7EE7;&#x627F;ForwardingJavaFileManager&#x7C7B;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;Java&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x7EE7;&#x627F;&#x5E76;&#x91CD;&#x5199;URLClassLoader.findClass()&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5C06;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x76F4;&#x63A5;&#x4EE5;byte[]&#x5F62;&#x5F0F;&#x8FD4;&#x56DE;&#xFF0C;&#x800C;&#x4E0D;&#x518D;&#x5199;&#x5165;&#x5230;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#x3002;&#xFF08;&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#x5728;&#x6587;&#x672B;&#xFF09;</p>
 <pre><code>public static Map&lt;String, byte[]&gt; compile(String javaName, String javaSrc) {
     JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
     StandardJavaFileManager stdManager = compiler.getStandardFileManager(null, null, null);
@@ -350,10 +367,10 @@ proxy_set_header X-Forwarded-Proto  $scheme; //解决getScheme，isSecure，send
     }
     return null;
 }
-</code></pre><p>完整代码段<br>上述的代码逻辑，我进行了部分封装，封装后的代码可以在这里看到，封装后的类使用方法可以参考测试用例。</p>
-<p>这里就几个有关的参数说明一下：（具体可以参照封装类的代码）</p>
-<p>MemoryJavaFileManager.getClassBytes()的返回类型为Map<string, byte[]="">,其中Key为类名，Value为对应的字节码。一般来说一个.java文件只对应一个类，但是可能会存在内部类的情况（例如我这个封装的文件），因此一个java源文件是可以生成出多个class文件的。<br>MemoryJavaFileManager.makeStringSource(String, String)方法<br>第一个参数是Java源文件的文件名，因为实际上并不存在磁盘文件，因此这个参数应该是源文件中唯一的那个public修饰符修饰的类名，例如源文件中存在public class ABC{}，那么这个参数就应该是ABC.java，否则编译器会报错，拒绝编译。<br>第二个参数是源文件内容的字符串<br>该封装类，在Oracle JDK 1.8版本下测试通过，其他版本JDK以及OpenJDK未测试。JRE不支持该代码，因为JRE中不存在Java编译器。如果需要在JRE环境下动态创建并加载类，唯一可行的办法使用开源的字节码操作库（文章开头有介绍两个）<br>测试用例中的testCompile()方法可能在不同版本的JDK下编译出来的字节码大小有所不同，造成JUnit断言失败，代码本身经测试就没有问题的。<br>动态创建的类加载到JVM后，与原生的类没有任何区别，因此创建的时候留意包名类名是否存在冲突，动态加载的类，调用只能使用反射机制。具体方法参考测试用例中的testInvoke()方法。<br>总结<br>本文总的来说没有什么技术含量，主要就是使用了一组编译器相关的API而已，如果这组API在使用过程中有什么疑问，请参照官方文档。</string,></p>
-<p>其他，有什么问题，欢迎与我进行交流。</p>
+</code></pre><p>&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#x6BB5;<br>&#x4E0A;&#x8FF0;&#x7684;&#x4EE3;&#x7801;&#x903B;&#x8F91;&#xFF0C;&#x6211;&#x8FDB;&#x884C;&#x4E86;&#x90E8;&#x5206;&#x5C01;&#x88C5;&#xFF0C;&#x5C01;&#x88C5;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x770B;&#x5230;&#xFF0C;&#x5C01;&#x88C5;&#x540E;&#x7684;&#x7C7B;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x5C31;&#x51E0;&#x4E2A;&#x6709;&#x5173;&#x7684;&#x53C2;&#x6570;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#xFF1A;&#xFF08;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x7167;&#x5C01;&#x88C5;&#x7C7B;&#x7684;&#x4EE3;&#x7801;&#xFF09;</p>
+<p>MemoryJavaFileManager.getClassBytes()&#x7684;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x4E3A;Map<string, byte[]="">,&#x5176;&#x4E2D;Key&#x4E3A;&#x7C7B;&#x540D;&#xFF0C;Value&#x4E3A;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x8282;&#x7801;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x4E00;&#x4E2A;.java&#x6587;&#x4EF6;&#x53EA;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x80FD;&#x4F1A;&#x5B58;&#x5728;&#x5185;&#x90E8;&#x7C7B;&#x7684;&#x60C5;&#x51B5;&#xFF08;&#x4F8B;&#x5982;&#x6211;&#x8FD9;&#x4E2A;&#x5C01;&#x88C5;&#x7684;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x56E0;&#x6B64;&#x4E00;&#x4E2A;java&#x6E90;&#x6587;&#x4EF6;&#x662F;&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x51FA;&#x591A;&#x4E2A;class&#x6587;&#x4EF6;&#x7684;&#x3002;<br>MemoryJavaFileManager.makeStringSource(String, String)&#x65B9;&#x6CD5;<br>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;Java&#x6E90;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x56E0;&#x4E3A;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5B58;&#x5728;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x5E94;&#x8BE5;&#x662F;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x552F;&#x4E00;&#x7684;&#x90A3;&#x4E2A;public&#x4FEE;&#x9970;&#x7B26;&#x4FEE;&#x9970;&#x7684;&#x7C7B;&#x540D;&#xFF0C;&#x4F8B;&#x5982;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x5B58;&#x5728;public class ABC{}&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x5E94;&#x8BE5;&#x662F;ABC.java&#xFF0C;&#x5426;&#x5219;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x62D2;&#x7EDD;&#x7F16;&#x8BD1;&#x3002;<br>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x6E90;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7684;&#x5B57;&#x7B26;&#x4E32;<br>&#x8BE5;&#x5C01;&#x88C5;&#x7C7B;&#xFF0C;&#x5728;Oracle JDK 1.8&#x7248;&#x672C;&#x4E0B;&#x6D4B;&#x8BD5;&#x901A;&#x8FC7;&#xFF0C;&#x5176;&#x4ED6;&#x7248;&#x672C;JDK&#x4EE5;&#x53CA;OpenJDK&#x672A;&#x6D4B;&#x8BD5;&#x3002;JRE&#x4E0D;&#x652F;&#x6301;&#x8BE5;&#x4EE3;&#x7801;&#xFF0C;&#x56E0;&#x4E3A;JRE&#x4E2D;&#x4E0D;&#x5B58;&#x5728;Java&#x7F16;&#x8BD1;&#x5668;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5728;JRE&#x73AF;&#x5883;&#x4E0B;&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x5E76;&#x52A0;&#x8F7D;&#x7C7B;&#xFF0C;&#x552F;&#x4E00;&#x53EF;&#x884C;&#x7684;&#x529E;&#x6CD5;&#x4F7F;&#x7528;&#x5F00;&#x6E90;&#x7684;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;&#x5E93;&#xFF08;&#x6587;&#x7AE0;&#x5F00;&#x5934;&#x6709;&#x4ECB;&#x7ECD;&#x4E24;&#x4E2A;&#xFF09;<br>&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x4E2D;&#x7684;testCompile()&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x5728;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;JDK&#x4E0B;&#x7F16;&#x8BD1;&#x51FA;&#x6765;&#x7684;&#x5B57;&#x8282;&#x7801;&#x5927;&#x5C0F;&#x6709;&#x6240;&#x4E0D;&#x540C;&#xFF0C;&#x9020;&#x6210;JUnit&#x65AD;&#x8A00;&#x5931;&#x8D25;&#xFF0C;&#x4EE3;&#x7801;&#x672C;&#x8EAB;&#x7ECF;&#x6D4B;&#x8BD5;&#x5C31;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x7684;&#x3002;<br>&#x52A8;&#x6001;&#x521B;&#x5EFA;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5230;JVM&#x540E;&#xFF0C;&#x4E0E;&#x539F;&#x751F;&#x7684;&#x7C7B;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x533A;&#x522B;&#xFF0C;&#x56E0;&#x6B64;&#x521B;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#x7559;&#x610F;&#x5305;&#x540D;&#x7C7B;&#x540D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x51B2;&#x7A81;&#xFF0C;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x7684;&#x7C7B;&#xFF0C;&#x8C03;&#x7528;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x53CD;&#x5C04;&#x673A;&#x5236;&#x3002;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x53C2;&#x8003;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x4E2D;&#x7684;testInvoke()&#x65B9;&#x6CD5;&#x3002;<br>&#x603B;&#x7ED3;<br>&#x672C;&#x6587;&#x603B;&#x7684;&#x6765;&#x8BF4;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x6280;&#x672F;&#x542B;&#x91CF;&#xFF0C;&#x4E3B;&#x8981;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x7EC4;&#x7F16;&#x8BD1;&#x5668;&#x76F8;&#x5173;&#x7684;API&#x800C;&#x5DF2;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x7EC4;API&#x5728;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x6709;&#x4EC0;&#x4E48;&#x7591;&#x95EE;&#xFF0C;&#x8BF7;&#x53C2;&#x7167;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x3002;</string,></p>
+<p>&#x5176;&#x4ED6;&#xFF0C;&#x6709;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x6B22;&#x8FCE;&#x4E0E;&#x6211;&#x8FDB;&#x884C;&#x4EA4;&#x6D41;&#x3002;</p>
 
       
     </div>
@@ -441,7 +458,7 @@ proxy_set_header X-Forwarded-Proto  $scheme; //解决getScheme，isSecure，send
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				
+    				<a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javaassit/" style="font-size: 10px;">Javaassit</a>
     			</div>
     	</section>
     
