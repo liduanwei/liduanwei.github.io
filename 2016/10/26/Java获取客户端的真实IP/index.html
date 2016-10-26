@@ -18,7 +18,7 @@
         String ipAddress = null;
         //ipAddress = this.getRequest().getRemoteAddr();
         ipAddress = request.getHeader(&amp;quot;x-forward">
-<meta property="og:updated_time" content="2016-10-26T07:36:47.000Z">
+<meta property="og:updated_time" content="2016-10-26T07:39:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java获取客户端的真实IP">
 <meta name="twitter:description" content="protected String getIpAddr(HttpServletRequest request) {
@@ -205,15 +205,15 @@
                 ipAddress = inet.getHostAddress();
             }
 
-    }
-
-    //&#x5BF9;&#x4E8E;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x4EE3;&#x7406;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;IP&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x771F;&#x5B9E;IP,&#x591A;&#x4E2A;IP&#x6309;&#x7167;&apos;,&apos;&#x5206;&#x5272;
-    if (ipAddress != null &amp;&amp; ipAddress.length() &gt; 15) { //&quot;***.***.***.***&quot;.length() = 15
-        if (ipAddress.indexOf(&quot;,&quot;) &gt; 0) {
-            ipAddress = ipAddress.substring(0, ipAddress.indexOf(&quot;,&quot;));
         }
-    }
-    return ipAddress;
+
+        //&#x5BF9;&#x4E8E;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x4EE3;&#x7406;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;IP&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x771F;&#x5B9E;IP,&#x591A;&#x4E2A;IP&#x6309;&#x7167;&apos;,&apos;&#x5206;&#x5272;
+        if (ipAddress != null &amp;&amp; ipAddress.length() &gt; 15) { //&quot;***.***.***.***&quot;.length() = 15
+            if (ipAddress.indexOf(&quot;,&quot;) &gt; 0) {
+                ipAddress = ipAddress.substring(0, ipAddress.indexOf(&quot;,&quot;));
+            }
+        }
+        return ipAddress;
 }
 </code></pre>
       

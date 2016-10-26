@@ -197,15 +197,15 @@
                 ipAddress = inet.getHostAddress();
             }
 
-    }
-
-    //&#x5BF9;&#x4E8E;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x4EE3;&#x7406;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;IP&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x771F;&#x5B9E;IP,&#x591A;&#x4E2A;IP&#x6309;&#x7167;&apos;,&apos;&#x5206;&#x5272;
-    if (ipAddress != null &amp;&amp; ipAddress.length() &gt; 15) { //&quot;***.***.***.***&quot;.length() = 15
-        if (ipAddress.indexOf(&quot;,&quot;) &gt; 0) {
-            ipAddress = ipAddress.substring(0, ipAddress.indexOf(&quot;,&quot;));
         }
-    }
-    return ipAddress;
+
+        //&#x5BF9;&#x4E8E;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x4EE3;&#x7406;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;IP&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x771F;&#x5B9E;IP,&#x591A;&#x4E2A;IP&#x6309;&#x7167;&apos;,&apos;&#x5206;&#x5272;
+        if (ipAddress != null &amp;&amp; ipAddress.length() &gt; 15) { //&quot;***.***.***.***&quot;.length() = 15
+            if (ipAddress.indexOf(&quot;,&quot;) &gt; 0) {
+                ipAddress = ipAddress.substring(0, ipAddress.indexOf(&quot;,&quot;));
+            }
+        }
+        return ipAddress;
 }
 </code></pre>
       
