@@ -176,7 +176,7 @@
       
         <pre><code>protected String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = this.getRequest().getRemoteAddr();
+        //ipAddress = request.getRemoteAddr(); // &#x5E76;&#x4E0D;&#x80FD;&#x6B63;&#x786E;&#x83B7;&#x53D6;, 
         ipAddress = request.getHeader(&quot;x-forwarded-for&quot;);
         if (ipAddress == null || ipAddress.length() == 0 || &quot;unknown&quot;.equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader(&quot;Proxy-Client-IP&quot;);

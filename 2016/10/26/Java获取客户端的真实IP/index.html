@@ -8,23 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="protected String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = this.getRequest().getRemoteAddr();
-        ipAddress = request.getHeader(&amp;quot;x-forward">
+        //ipAddress = request.getRemoteAddr(); // &amp;#x5E76;&amp;#x4E0D;&amp;#x80FD;&amp;#x6B63;&amp;#x786E;&amp;#x83B7;&amp;#x53D6;,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java获取客户端的真实IP">
 <meta property="og:url" content="http://www.liduanwei.com/2016/10/26/Java获取客户端的真实IP/index.html">
 <meta property="og:site_name" content="Welee's Blog">
 <meta property="og:description" content="protected String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = this.getRequest().getRemoteAddr();
-        ipAddress = request.getHeader(&amp;quot;x-forward">
-<meta property="og:updated_time" content="2016-10-26T07:39:28.000Z">
+        //ipAddress = request.getRemoteAddr(); // &amp;#x5E76;&amp;#x4E0D;&amp;#x80FD;&amp;#x6B63;&amp;#x786E;&amp;#x83B7;&amp;#x53D6;,">
+<meta property="og:updated_time" content="2016-10-26T07:41:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java获取客户端的真实IP">
 <meta name="twitter:description" content="protected String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = this.getRequest().getRemoteAddr();
-        ipAddress = request.getHeader(&amp;quot;x-forward">
+        //ipAddress = request.getRemoteAddr(); // &amp;#x5E76;&amp;#x4E0D;&amp;#x80FD;&amp;#x6B63;&amp;#x786E;&amp;#x83B7;&amp;#x53D6;,">
   
     <link rel="alternative" href="/atom.xml" title="Welee&#39;s Blog" type="application/atom+xml">
   
@@ -184,7 +181,7 @@
       
         <pre><code>protected String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = this.getRequest().getRemoteAddr();
+        //ipAddress = request.getRemoteAddr(); // &#x5E76;&#x4E0D;&#x80FD;&#x6B63;&#x786E;&#x83B7;&#x53D6;, 
         ipAddress = request.getHeader(&quot;x-forwarded-for&quot;);
         if (ipAddress == null || ipAddress.length() == 0 || &quot;unknown&quot;.equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader(&quot;Proxy-Client-IP&quot;);
